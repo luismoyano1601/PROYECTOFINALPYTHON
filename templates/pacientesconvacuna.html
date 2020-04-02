@@ -1,0 +1,60 @@
+<!--#CODIGO CREADO POR LUIS MOYANO ESTUDIANTE DE IECI-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Vacunatorio</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h2>Vacunatorio Coelemu</h2>
+  
+	<br>
+  <table class="table table-hover" id="myTable">
+    <thead>
+      <tr>
+        <th>Nombre Vacuna</th>
+        <th>Fecha Vacuna</th>
+        
+        <p align="right">
+            <a href="/pacientes"><input type="button" value="Volver"></a>
+          </p>
+        
+        
+      </tr>
+    </thead>
+    <tbody>
+      {% for vacunados in vacuneitor %}
+        <tr>
+          <td>{{ vacunados['nombreenfermedad'] }}</td>
+          <td>{{ vacunados['fechavacuna'] }}</td>
+          
+         
+
+          
+          
+          
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+ 
+ 
+</div>
+
+</body>
+<script type="text/javascript">
+  $(document).ready( function () {
+    $('#myTable').DataTable();
+  });
+</script>
+
+
+</html>

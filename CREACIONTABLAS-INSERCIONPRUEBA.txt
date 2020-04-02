@@ -1,0 +1,48 @@
+NOMBRE BD: "vacunatorio"
+
+CREATE TABLE paciente(
+	rutpaciente VARCHAR(20),
+	nombrepaciente VARCHAR(255),
+	fechanacimiento DATE,
+	PRIMARY KEY(rutpaciente)
+	
+);
+
+CREATE TABLE vacuna (
+	nombreenfermedad VARCHAR(255),
+	fechallegada DATE,
+	PRIMARY KEY (nombreenfermedad)
+);
+
+CREATE TABLE vacunados(
+	nombreenfermedad VARCHAR(255),
+	rutpaciente VARCHAR(20),
+	fechavacuna DATE,	
+	PRIMARY KEY (nombreenfermedad,rutpaciente),
+	FOREIGN KEY (nombreenfermedad) REFERENCES vacuna(nombreenfermedad),
+	FOREIGN KEY (rutpaciente) REFERENCES paciente(rutpaciente)
+);
+
+////////////////////////////////////////////////////////////////
+INSERCIONES:
+paciente:
+INSERT INTO paciente VALUES('19222222-5','Marco Jimenez','1900-05-20');
+INSERT INTO paciente VALUES('11222333-6','Marco Gutierrez','2000-06-20');
+INSERT INTO paciente VALUES('19333111-5','Gonzalo Jimenez','2001-05-11');
+
+///////////////////////////////////////////////////////////////////
+vacuna:
+INSERT INTO vacuna VALUES('covid-19','2020-03-20');
+INSERT INTO vacuna VALUES('MMMR','2018-01-20');
+INSERT INTO vacuna VALUES('Hepatitis B','2017-01-01');
+
+
+////////////////////////////////////////////////////////////////
+vacunados:
+INSERT INTO vacunados VALUES('covid-19','19222222-5','2020-03-27');
+INSERT INTO vacunados VALUES('Hepatitis B','19333111-5','2020-03-19');
+
+
+
+
+////////////////////////////////////////////////

@@ -1,0 +1,65 @@
+<!--#CODIGO CREADO POR LUIS MOYANO ESTUDIANTE DE IECI-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Vacunatorio</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h2 align="center">Vacunatorio Coelemu</h2>
+  <h3 align="left">Vacunar a paciente</h3>
+  <p align="right">
+    <a href="/pacientes"><input type="button" value="Volver a pacientes"></a>
+  </p>
+  <div class="card col-4 col-md-offset ">
+    <form class="form-horizontal" method="POST" action="/registrarvacunados">
+        <fieldset class="text-center">
+            <legend class="header">Seleccione Vacuna</legend>
+            <label>Rut Paciente</label>
+            <input class="form-control" type="text" name="id" value="{{rut}}">
+              <div class="form-group">
+                  <div class="col-md-12">
+                    <label class="f">Vacuna: </label>
+                    <select class="form-control" name="vacuna">
+                      {% for vacuna in vacunas %}
+                      <option name="vacuna" value="{{vacuna['nombreenfermedad']}}">{{vacuna['nombreenfermedad']}}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+              </div>
+
+              <div class="form-group">
+
+
+                <button class="btn btn-primary" type="submit">Vacunar paciente</button>
+ 
+ 
+             </div>
+              </div>
+          </fieldset>
+      </form>
+    </div>
+    <br>
+	
+ 
+
+ 
+ 
+</div>
+
+</body>
+<script type="text/javascript">
+  $(document).ready( function () {
+    $('#myTable').DataTable();
+  });
+</script>
+
+
+</html>

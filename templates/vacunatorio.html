@@ -1,0 +1,135 @@
+<!--#CODIGO CREADO POR LUIS MOYANO ESTUDIANTE DE IECI-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Vacunatorio</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h2 align="center">Vacunatorio Coelemu</h2>
+  <h3 align="left">Listado de pacientes</h3>
+  
+	<br>
+  <table class="table table-hover" id="myTable">
+    <thead>
+      <tr>
+        <th>Paciente</th>
+        <th>Rut</th>
+        <th>Nacimiento</th>
+        <th>Vacunas</th>
+        <p align="right">
+        <a href="/listadovacunas"><input type="button" value="Listado Vacunas"></a>
+        </p>
+        <p align="left">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            Agregar pacientes
+          </button>  
+        </p>
+        
+      </tr>
+    </thead>
+    <tbody>
+      {% for paciente in pacientes %}
+        <tr>
+          <td>{{ paciente['nombrepaciente'] }}</td>
+          <td>{{ paciente['rutpaciente'] }}</td>
+          <td>{{ paciente['fechanacimiento'] }}</td>
+          <td>
+            <a  href="/historialvacuna/{{paciente['rutpaciente']}}"value="submit">Ver</a>
+          </td>
+          <td>
+            <a  href="/ingresarvacuna/{{paciente['rutpaciente']}}"value="submit">Agregar</a>
+          </td>
+
+          
+          
+          
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <!--////////////////////////////////////////lineas de codigo para insertar en pacientes/////////////////////////////-->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Porfavor Ingrese Datos</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="{{ url_for('insertar')}}" method="POST">
+
+
+            <div class="form-group">
+
+
+               <label>Rut Paciente:</label>
+               <input type="text" class="form-control" name="rutpaciente" required="1">
+
+
+            </div>
+
+
+             <div class="form-group">
+
+
+               <label>Nombre Completo:</label>
+               <input type="text" class="form-control" name="nombrepaciente" required="1">
+
+
+            </div>
+
+
+             <div class="form-group">
+
+
+               <label>Fecha:</label>
+               <input type="date" class="form-control" name="fechanacimiento" required="1">
+
+
+            </div>
+
+
+
+            <div class="form-group">
+
+
+               <button class="btn btn-primary" type="submit">Agregar paciente</button>
+
+
+            </div>
+
+
+         </form>
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+ <!--FIN DE CODIGO MODAL PARA INSERTAR PACIENTES-->
+ 
+</div>
+
+</body>
+<script type="text/javascript">
+  $(document).ready( function () {
+    $('#myTable').DataTable();
+  });
+</script>
+
+
+</html>
